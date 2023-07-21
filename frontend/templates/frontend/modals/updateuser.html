@@ -1,0 +1,65 @@
+<div id="modalUpdateUser" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <form class="modal-content" action="{% url 'updateuser' %}" method="post">
+            {% csrf_token %}
+            <div class="modal-header" style="display: unset;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Account</h4>
+            </div>
+            <div class="modal-body">
+                <input class="input-update-user-id" type="hidden" name="id" value="">
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Email:</span>
+                    </div>
+                    <input class="input-update-user-email" type="text" disabled value="">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Username:</span>
+                    </div>
+                    <input class="input-update-user-username" name="username" type="text" disabled value="">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>First Name:</span>
+                    </div>
+                    <input class="input-update-user-firstname" type="text" disabled value="">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Last Name:</span>
+                    </div>
+                    <input class="input-update-user-lastname" type="text" disabled value="">
+                </div>
+                <div class="role-radio d-flex justify-content-between">
+                    <div class="form-check d-flex">
+                        <label class="form-check-label label-role" for="role3">
+                            User
+                        </label>
+                        <input value="User" class="input-update-user-role form-check-input" type="radio" name="rule"
+                            id="role3">
+                    </div>
+                    <div class="form-check d-flex">
+                        <label class="form-check-label label-role" for="role2">
+                            Super
+                        </label>
+                        <input value="Super" class="input-update-user-role form-check-input" type="radio" name="rule"
+                            id="role2">
+                    </div>
+                    <div class="form-check d-flex">
+                        <label class="form-check-label label-role" for="role1">
+                            Admin
+                        </label>
+                        <input value="Admin" class="input-update-user-role form-check-input" type="radio" name="rule"
+                            id="role1">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-create" value="Update">
+            </div>
+        </form>
+    </div>
+</div>

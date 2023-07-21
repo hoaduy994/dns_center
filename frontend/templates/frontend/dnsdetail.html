@@ -1,0 +1,157 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0 my-0">
+            <li class="breadcrumb-item" aria-current="page"><a href="/dnsnode">DNS Node</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">DNS Name</a></li>
+        </ol>
+    </nav>
+    <table class="dns-detail">
+        <tr>
+            <th colspan="2" class="dns-detail-name">Company</th>
+        </tr>
+        <tr>
+            <td>Domanin name: <span id="dnsName">{{results.Company.Domanin_name}}</span></td>
+            <td>MAC: <span id="dnsMac">{{results.Company.Mac}}</span></td>
+            <td>Note: <span id="dnsNote">Null</span></td>
+        </tr>
+        <tr>
+            <td>IP address: <span id="dnsIp">{{results.Company.IP_address}}</span></td>
+            <td colspan="2">OS: <span id="dnsOs">{{results.Company.OS}}</span></td>
+        </tr>
+    </table>
+    <div class="card mt-3">
+        <div class="card-body" style="width: 100%; height: 400px">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    <div class="top-domain-tables d-flex justify-content-between align-items-start mt-5">
+        <div class="card domain-table">
+            <div class="card-header">
+                Top Client (total)
+            </div>
+            <div class="card-body top-table">
+                <table style="width: 100%" class="table table-bordered">
+                    <thead>
+                        <tr style="width: 100%">
+                            <th scope="col" style="width: 40%;">Client</th>
+                            <th scope="col" style="width: 20%;">Request</th>
+                            <th scope="col" style="width: 35%;">Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topTotalTable">
+                        {% for item in top10_total %}
+                        <tr>
+                            <td class="domain-name">{{item.domain}}</td>
+                            <td>{{item.count}}</td>
+                            <td class="col-progress">
+                                <div class="progress" style="width: 100%;">
+                                    <div class="progress-bar" role="progressbar" style="width: {{item.total}}%"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card domain-table">
+            <div class="card-header">
+                Top Client (Block only)
+            </div>
+            <div class="card-body top-table">
+                <table style="width: 100%" class="table table-bordered">
+                    <thead>
+                        <tr style="width: 100%">
+                            <th scope="col" style="width: 40%;">Client</th>
+                            <th scope="col" style="width: 20%;">Request</th>
+                            <th scope="col" style="width: 35%;">Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topBlockTable">
+                        {% for item in top10_block_only %}
+                        <tr>
+                            <td class="domain-name">{{item.domain}}</td>
+                            <td>{{item.count}}</td>
+                            <td class="col-progress">
+                                <div class="progress" style="width: 100%;">
+                                    <div class="progress-bar" role="progressbar" style="width: {{item.total}}%"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-5 mt-5">
+        <div class="card-header">
+            Add DNS Forwarder
+        </div>
+        <form class="card-body dns-forward-form" action="{{request.path}}" method="post">
+            {% csrf_token %}
+            <div class=" d-flex justify-content-between flex-row">
+                <input type="hidden" name="id_dnsnode" value="{{id_dns_center}}">
+                <div class="input-add-whitelist mr-3">
+                    <span>IP address:</span>
+                    <input class="mt-2 mb-1 ip-dns-forward" name="ip" type="text">
+                    <span class="ip-dns-forward-err"></span>
+                </div>
+                <div class="input-add-whitelist ml-3">
+                    <span>Title:</span>
+                    <input class="mt-2 mb-1 title-dns-forward" name="title" type="text">
+                    <span class="title-dns-forward-err"></span>
+                </div>
+            </div>
+            <div class="mt-4 text-right">
+                <input class="btn btn-main btn-dns-forward-form" type="submit" value="Add to Forwarder List">
+            </div>
+        </form>
+    </div>
+    <div class="list-dns-table">
+        <div class="card">
+            <div class="card-header">
+                List of DNS Forwarder
+            </div>
+            <div class="card-body">
+                <table style="word-break:break-word; width: 100%;" id="forwarder_table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">No</th>
+                            <th scope="col" style="width: 22.5%;">IP</th>
+                            <th scope="col" style="width: 22.5%;">Title</th>
+                            <th scope="col" style="width: 5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in dns_forward %}
+                        <tr>
+                            <td style="width: 5%;">{{forloop.counter}}</td>
+                            <td style="width: 18%;"><a class="dns-name">
+                                    {{ item.ip }}</a>
+                            </td>
+                            <td style="width: 18%;">
+                                <span>{{ item.title }}</span><br>
+                            </td>
+                            {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+                            <td style="width: 5%;">
+                                <span class="delete-icon del-forwarder-list" data-iddnsnode="{{id_dns_center}}"
+                                    data-iddnsforward="{{item.id}}" data-toggle="modal"
+                                    data-target="#modalDeleteDnsForward">
+                                </span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

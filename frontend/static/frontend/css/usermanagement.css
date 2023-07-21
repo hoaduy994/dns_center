@@ -1,0 +1,50 @@
+.add-account-btn {
+  background-color: #24b24b !important;
+  padding: 5px 10px;
+  color: white !important;
+}
+
+.filter-role {
+  width: 90%;
+  height: 36px;
+  padding: 0 5px;
+  top: 15px;
+  position: absolute;
+  left: 8px;
+  z-index: 1;
+  border: 1px solid #aaa;
+  background: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.btn-close {
+  background-color: #E54A40 !important;
+  padding: 5xp 10px !important;
+  color: white !important;
+}
+
+.btn-create {
+  background-color: #1569b2 !important;
+  padding: 5xp 10px !important;
+  color: #fff !important;
+}
+
+.input-user-management input {
+  width: 100%;
+  outline: none;
+  border: 1px solid #d3cbcb;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.role-radio>input[type="radio"] {
+  line-height: 23px;
+  height: 16px;
+  width: 16px;
+  padding: 0 !important;
+}
+
+.label-role {
+  line-height: 24px!important;
+}

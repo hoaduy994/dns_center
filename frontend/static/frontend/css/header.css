@@ -1,0 +1,42 @@
+.header {
+  background-color: white;
+  border-bottom: 1px solid #d3cbcb;
+  width: 100%;
+  font-family: 'lato';
+  font-size: 16px;
+  height: 80px;
+}
+
+.header .main-navbar {
+  width: 95%;
+  margin: auto;
+}
+
+.header .main-navbar .fis-logo {
+  width: 72%;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.dropdown .dropdown-item {
+  list-style-type: none;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.dropdown .dropdown-menu {
+  right: 0;
+  left: unset !important;
+}
+
+.btn-user {
+  font-weight: normal;
+  background: none;
+  border: none;
+}
+
+.btn-user:focus {
+  outline: none;
+}

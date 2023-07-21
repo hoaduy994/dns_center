@@ -1,0 +1,34 @@
+.login-container {
+    height: calc(100vh - 80px);
+    width: 100% !important;
+}
+
+.login {
+    width: 25%;
+    margin: auto;
+}
+
+
+.input-user-management input {
+    height: 40px;
+    padding: 0 10px;
+}
+
+.btn-login {
+    width: 100px;
+    background: #1569B2;
+    text-align: center;
+    margin: auto;
+    color: white;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 6px 3px;
+}
+
+.btn-login:hover {
+    color: white;
+}
+
+.btn-forgot-password {
+    text-align: center;
+}

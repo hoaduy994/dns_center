@@ -1,0 +1,36 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">DNS Node</a></li>
+        </ol>
+    </nav>
+    <div class="top-ip-table">
+        <div class="card">
+            <div class="card-header">
+                List of DNS
+            </div>
+            <div class="card-body">
+                <table id="list_dns_table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10%;">No</th>
+                            <th scope="col" style="width: 21%;">Host name</th>
+                            <th scope="col" style="width: 21%;">IP</th>
+                            <th scope="col" style="width: 12%;">RAM</th>
+                            <th scope="col" style="width: 12%;">CPU</th>
+                            <th scope="col" style="width: 12%;">Disk</th>
+                            <th scope="col" style="width: 12%;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dnsnode_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

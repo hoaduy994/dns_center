@@ -1,0 +1,216 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}?page=1">Blacklist Management</a></li>
+        </ol>
+    </nav>
+    {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+    <div class="card mb-5">
+        <div class="card-header">
+            Add a new blacklisted domain
+        </div>
+        <form class="card-body form-add-blacklist" action="{% url 'blacklist' %}?page=1" method="post">
+            {% csrf_token %}
+            <div class=" d-flex justify-content-between flex-row">
+                <div class="input-add-whitelist mr-3">
+                    <select class="form-select" aria-label="Default select example" name="type">
+                        <option value="1" selected>Domain</option>
+                        <option value="3">Regex</option>
+                    </select>
+                    <input class="mt-2 mb-1 domain-blacklist" name="domain" type="text">
+                    <span class="domain-blacklist-err"></span>
+                </div>
+                <div class="input-add-whitelist ml-3">
+                    <span>Title:</span>
+                    <input class="mt-2 mb-1 title-blacklist" name="title" type="text">
+                    <span class="title-blacklist-err"></span>
+                </div>
+            </div>
+            <div class="mt-4 add-white-list-dns">
+                <table style="word-break:break-word; width: 100%;" class="table">
+                    <tbody id="addBlackListDns">
+                        {% for item in dns_node %}
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input checkbox-blacklist" name="id" type="checkbox"
+                                        value={{item.id}} id="flexCheckDefault">
+                                </div>
+                            </td>
+                            <td>{{item.hostname}}</td>
+                            <td>{{item.ip}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <span class="checkbox-blacklist-err"></span>
+            <div class="mt-4 text-right">
+                <input class="btn btn-main btn-submit-blacklist" type="submit" value="Add to Blacklist">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    <div class="list-dns-table">
+        <div class="card">
+            <div class="card-header">
+                List of DNS
+            </div>
+            <div class="card-body">
+                <div class="mb-3 search-blacklist-container">
+                    <form class="form-search-blacklist input-group input-group-sm" method="get">
+                        <input type="text" name="page" value="1" hidden>
+                        {% for field in form %}
+                        {{ field }}
+                        {% endfor %}
+                        <div class="input-group-append">
+                            <input class="btn btn-search" type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+                <table style="word-break:break-word; width: 100%;" id="blacklist_table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">No</th>
+                            <th scope="col" style="width: 22.5%;">Domain</th>
+                            <th scope="col" style="width: 22.5%;">DNS Name</th>
+                            <th scope="col" style="width: 22.5%;">IP</th>
+                            <th scope="col" style="width: 22.5;">Type</th>
+                            {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+                            <th scope="col" style="width: 5%;"></th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody id="blacklist">
+                        {% for item in blacklist %}
+                        <tr>
+                            <td style="width: 5%;">{{forloop.counter}}</td>
+                            <td style="width: 18%;"><a class="dns-name" href="javascript:void(0)">
+                                    {{item.domain}}</a>
+                            </td>
+
+                            <td style="width: 18%;">
+                                {% for item in item.add_dns %}
+                                <span>{{item}}</span><br>
+                                {% endfor %}
+                            </td>
+                            <td style="width: 18%;">
+                                {% for item in item.ip_address %}
+                                <span>{{item}}</span><br>
+                                {% endfor %}
+                            </td>
+                            <td style="width: 18%;">
+                                {% if item.type == "0" %}
+                                <span>White</span>
+                                {% elif item.type == "1" %}
+                                <span>Black</span>
+                                {% elif item.type == "2" %}
+                                <span>Regex_white</span>
+                                {% elif item.type == "3" %}
+                                <span>Regex_black</span>
+                                {% endif %}
+                            </td>
+                            {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+                            <td style="width: 5%;">
+                                <span data-iddns="{{item.id_dnss}}" data-id="{{item.id_blacklist}}"
+                                    data-dnsname="{{item.add_dns}}" data-ip="{{item.ip_address}}" data-toggle="modal"
+                                    data-target="#modelDeleteBlackList" class="delete-icon del-black-list">
+                                </span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!--Pagination-->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mb-0 mt-3">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            {% if 'domain' in request.get_full_path %}
+                            <a class="page-link"
+                                href="?page={{ page_obj.previous_page_number }}&domain={{ request.GET.domain }}">Prev</a>
+                            {% else %}
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Prev</a>
+                        </li>
+                        {% endif %}
+
+                        {% if page_obj.number|add:'-4' > 1 %}
+                        {% if 'domain' in request.get_full_path %}
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="?page={{ page_obj.number|add:'-5' }}&domain={{ request.GET.domain }}">&hellip;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+
+                        {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">
+                                {{ i }}
+                                <span class="sr-only">(current)</span>
+                            </span>
+                        </li>
+                        {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %} 
+                        {% if 'domain' in request.get_full_path %} 
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}&domain={{ request.GET.domain }}">{{ i }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                        {% if 'domain' in request.get_full_path %}
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="?page={{ page_obj.number|add:'5' }}&domain={{ request.GET.domain }}">&hellip;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+
+                        {% if page_obj.has_next %}
+                        {% if 'domain' in request.get_full_path %}
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="?page={{ page_obj.next_page_number }}&domain={{ request.GET.domain }}">Next</a>
+                        </li>
+
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                        {% endif %}
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <!--end of Pagination-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

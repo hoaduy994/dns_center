@@ -1,0 +1,27 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">Log</a></li>
+        </ol>
+    </nav>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 30%; text-align: left; padding: 15px 0 15px 30px; font-size: 16px;">Time
+                </th>
+                <th scope="col" style="width: 70%; text-align: left; padding: 15px 0 15px 30px; font-size: 16px;">Log
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div style="height:100vh; overflow:auto;">
+        <table class="table table-hover">
+            <tbody class="log-table"></tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

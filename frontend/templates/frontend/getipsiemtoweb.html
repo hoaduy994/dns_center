@@ -1,0 +1,57 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">Send Log</a></li>
+        </ol>
+    </nav>
+    <div class="card mb-5">
+        <div class="card-header">
+            Send Log
+        </div>
+        <div class="card-body form-add-blacklist" action="{% url 'getipsiemtoweb' %}" method="post">
+            {% csrf_token %}
+            <div class=" d-flex justify-content-between flex-row">
+                <div class="input-add-whitelist ml-3">
+                    <span>IP:</span>
+                    <input class="mt-2 mb-1 title-blacklist" name="ip" type="text" placeholder>
+                    <span class="title-send-log-err"></span>
+                </div>
+                <div class="input-add-whitelist ml-3">
+                    <span>Port:</span>
+                    <input class="mt-2 mb-1 title-blacklist" name="port" type="text" placeholder>
+                    <span class="title-send-log-err"></span>
+                </div>
+            </div>
+            <div class="mt-4 text-right">
+                <input class="btn btn-main btn-submit-blacklist" type="submit" value="Submit">
+            </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 33.33%;">IP SIEM</th>
+                <th scope="col" style="width: 33.33%;">Port SIEM</th>
+                <th scope="col" style="width: 33.33%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ip_siem}}</td>
+                <td>{{port_siem}}</td>
+                <td>
+                    {% if is_connect %}
+                    <span class="green-dot-icon"></span>
+                    {% else %}
+                    <span class="grey-dot-icon"></span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

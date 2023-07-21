@@ -1,0 +1,17 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.get_username }}. Thanks for logging in.</p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
+{% if user.is_authenticated and user.is_superuser %}
+    <p>is_superuser</p>
+{% endif %}
+
+{% if user.is_authenticated and user.is_super %}
+    <p>is_super</p>
+{% endif %}
+
+{% if user.is_authenticated and user.is_admin %}
+    <p>is_admin</p>
+{% endif %}

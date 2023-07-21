@@ -1,0 +1,20 @@
+<div id="modalDeleteUser" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <!-- Modal content-->
+        <form class="modal-content" action="{% url 'deluser' %}" method="post">
+            {% csrf_token %}
+            <input class="input-del-user" type="hidden" name="id" value="">
+            <div class="modal-header" style="display: unset;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm action</h4>
+            </div>
+            <div class="modal-body">
+                <span>Are you sure about this ?</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-create" value="Delete">
+            </div>
+        </form>
+    </div>
+</div>

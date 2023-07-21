@@ -1,0 +1,14 @@
+venv/
+nohup.out
+*__pycache__*
+log/celery_dns_center_error.log
+log/runserver_dns_center_error.log
+log/runserver_dns_center_output.log
+log/celery_dns_center_output.log
+service/celery_dns_center.service
+service/runserver_dns_center.service
+siem/log_to_siem.log
+log/django.log
+siem/log_to_siem.log.1
+nosql/nosql_json/*
+service/*

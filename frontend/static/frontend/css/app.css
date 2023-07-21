@@ -1,0 +1,63 @@
+@import url('./header.css');
+@import url('./icons.css');
+@import url('./sidebar.css');
+@import url('./dashboard.css');
+@import url('./dnsnode.css');
+@import url('./dns-detail.css');
+@import url('./whitelist.css');
+@import url('./usermanagement.css');
+@import url('./login.css');
+
+@font-face {
+  font-family: 'lato';
+  src: url('../fonts/LatoRegular.ttf') format('truetype');
+}
+
+* {
+  font-family: 'lato';
+  font-size: 14px;
+}
+
+a {
+  color: #1569b2;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.content {
+  width: calc(100% - 50px);
+}
+
+input[type="button"],
+input[type="submit"] {
+  padding: 5xp 10px !important;
+  background-color: #1569b2;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  color: white;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  height: 36px;
+}
+
+.table {
+  margin-bottom: 0!important;
+}

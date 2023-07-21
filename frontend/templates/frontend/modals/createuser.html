@@ -1,0 +1,73 @@
+<div id="modalCreateUser" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <form class="modal-content" action="{% url 'createuser' %}" method="post">
+            {% csrf_token %}
+            <div class="modal-header" style="display: unset;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Account</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Email:</span>
+                    </div>
+                    <input name="emailCreateUser" type="email" value="" autocomplete="off">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Username:</span>
+                    </div>
+                    <input name="userNameCreateUser" type="text" value="" autocomplete="off">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>First Name:</span>
+                    </div>
+                    <input name="firstNameCreateUser" type="text" value="" autocomplete="off">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Last Name:</span>
+                    </div>
+                    <input name="lastNameCreateUser" type="text" value="" autocomplete="off">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Password:</span>
+                    </div>
+                    <input type="password" name="passwordCreateUser" value="" autocomplete="off">
+                </div>
+                <div class="input-user-management mb-3">
+                    <div class="mb-1">
+                        <span>Confirm Password:</span>
+                    </div>
+                    <input type="password" name="passwordConfirmationCreateUser" value="" autocomplete="off">
+                </div>
+                <div class="role-radio d-flex justify-content-between">
+                    <div class="form-check d-flex">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            User
+                        </label>
+                        <input checked class="form-check-input" value="User" type="radio" name="roleCreate" id="flexRadioDefault1">
+                    </div>
+                    <div class="form-check d-flex">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Super
+                        </label>
+                        <input class="form-check-input" value="Super" type="radio" name="roleCreate" id="flexRadioDefault2">
+                    </div>
+                    <div class="form-check d-flex">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                            Admin
+                        </label>
+                        <input class="form-check-input" value="Admin" type="radio" name="roleCreate" id="flexRadioDefault3">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-create" value="Create">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+
+  db:
+    container_name: pg_dns
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: csc@123A
+      POSTGRES_DB: DNS Center
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+    ports:
+      - "5555:5432"
+  pgadmin:
+    container_name: pgadmin4_dns
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@dnscenter.com
+      PGADMIN_DEFAULT_PASSWORD: csc@123A
+    ports:
+      - "4444:80"
+
+  metabase:
+    container_name: metabase_dns
+    image: metabase/metabase 
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabaseappdb
+      MB_DB_PORT: 5555
+      MB_DB_USER: admin
+      MB_DB_PASS: csc@123A
+      MB_DB_HOST: 10.14.131.26
+    ports:
+      - 3000:3000
+
+volumes:
+  postgres:

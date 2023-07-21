@@ -1,0 +1,85 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">User management</a></li>
+        </ol>
+    </nav>
+    <div class="list-dns-table mt-3">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    List of configured adlist
+                </div>
+                {% if user.is_authenticated and user.is_admin %}
+                <div>
+                    <button class="btn add-account-btn d-flex justify-content-around align-items-center"
+                        data-toggle="modal" data-target="#modalCreateUser">
+                        <span class="add-account-icon"></span>
+                        <span class="ml-2">Add new account</span>
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <table style="word-break:break-word; width: 100%;">
+                    <tr>
+                        <td style="width: 5%;"></td>
+                        <td style="width: 25%;"></td>
+                        <td style="width: 10%; position: relative;">
+                            <p id="selectTriggerFilter"></p>
+                            <!-- <select class="form-select filter-role" aria-label="Default select example">
+                                <option selected>Role</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Client</option>
+                                <option value="2">View</option>
+                            </select> -->
+                        </td>
+                        <td style="width: 25%;"></td>
+                        <td style="width: 25%;"></td>
+                        <td style="width: 10%;"></td>
+                    </tr>
+                </table>
+                <table style="word-break:break-word; width: 100%;" id="list_user_table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">ID</th>
+                            <th scope="col" style="width: 25%;">Email</th>
+                            <th scope="col" style="width: 10%;">Role</th>
+                            <th scope="col" style="width: 25%;">Username</th>
+                            <th scope="col" style="width: 25%;">Name</th>
+                            {% if user.is_authenticated and user.is_admin %}
+                            <th scope="col">Action</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in context%}
+                        <tr>
+                            <td style="width: 5%;">{{forloop.counter}}</td>
+                            <td style="width: 25%;">{{item.email}}</td>
+                            <td style="width: 10%;">{{item.rule}}</td>
+                            <td style="width: 25%;">{{item.username}}</td>
+                            <td style="width: 25%;">{{item.name}}</td>
+                            {% if user.is_authenticated and user.is_admin %}
+                            <td class="d-flex justify-content-around align-items-center">
+                                <span class="config-icon update-user" data-id="{{item.id}}"
+                                    data-firstname="{{item.firstName}}" data-lastname="{{item.lastName}}"
+                                    data-username="{{item.username}}" data-rule="{{item.rule}}"
+                                    data-email="{{item.email}}" data-toggle="modal" data-target="#modalUpdateUser">
+                                </span>
+                                <span class="delete-icon del-user" data-toggle="modal" data-id="{{item.username}}"
+                                    data-target="#modalDeleteUser"></span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

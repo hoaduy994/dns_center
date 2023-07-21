@@ -1,0 +1,9 @@
+logrotate state -- version 2
+"/root/dns_center/log/runserver_dns_center_error.log" 2022-7-5-9:32:35
+"/root/dns_center/log/runserver_dns_center_output.log" 2022-7-5-9:32:35
+"/root/dns_center/log/celery_dns_center_error.log" 2022-7-5-9:32:35
+"/root/dns_center/siem/log_to_siem.log" 2022-7-5-9:0:0
+"/root/dns_center/log/critical.log" 2022-7-5-11:0:0
+"/root/dns_center/log/django.log" 2022-7-5-11:0:0
+"/root/dns_center/log/celery_dns_center_output.log" 2022-7-5-9:32:35
+"/root/dns_center/log/info.log" 2022-7-5-11:0:0

@@ -1,0 +1,72 @@
+.sidebar {
+  height: calc(100vh);
+  width: 50px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: #f0f0f0;
+}
+
+.sidebar a {
+  color: black;
+  text-decoration: unset;
+  padding: 12px 25px;
+  height: 50px;
+  background: none;
+}
+
+.sidebar a.active {
+  background-color: #1569b2;
+}
+
+
+.sidebar a:hover {
+  text-decoration: none;
+  color: unset;
+  background-color: #f0f0f0;
+}
+
+.sidebar a.active:hover {
+  color: #fff;
+  background-color: #1569b2;
+}
+
+.sidebar .collapse-sidebar .icon-collapse-sidebar {
+  background-image: url('../icons/left-left.svg');
+}
+
+.collapse-sidebar {
+  position: fixed !important;
+  left: 0;
+  bottom: 0;
+  border-right: none !important;
+  border-left: none !important;
+  border-radius: unset !important;
+}
+
+.sidebar-small {
+  width: unset;
+}
+
+.sidebar-small .item-sidebar {
+  padding: 12px 5px;
+  height: 50px;
+}
+
+.sidebar-small .item-sidebar:hover {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-small .item-sidebar .txt-item-sidebar {
+  display: none;
+
+}
+
+.sidebar-small .collapse-sidebar {
+  width: unset;
+}
+
+.sidebar-small .collapse-sidebar .icon-collapse-sidebar {
+  background-image: url('../icons/right-right.svg');
+}

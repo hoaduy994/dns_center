@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'frontend/css/app.css' %}">
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="{% static 'frontend/js/jquery.min.js' %}"></script>
+
+    <!-- Chartjs -->
+    <script type="text/javascript" src="{% static 'frontend/js/chartjs.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'frontend/bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'frontend/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/DataTables/datatables.min.css' %}"/>
+    <script type="text/javascript" src="{% static 'frontend/DataTables/datatables.min.js' %}"></script>
+
+    <!-- datatable -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script> -->
+
+    <!-- datetime picker -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
+
+</head>
+
+<body>
+    {% block header %}
+    {% include "frontend/header.html" %}
+    {% endblock %}
+    <div class="d-flex">
+        {% block sidebar %}
+        {% include "frontend/sidebar.html" %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block modal %}
+        {% include "frontend/modals/createuser.html" %}
+        {% include "frontend/modals/updateuser.html" %}
+        {% include "frontend/modals/confirmdelete.html" %}
+        {% include "frontend/modals/deletewhitelist.html" %}
+        {% include "frontend/modals/deleteblacklist.html" %}
+        {% include "frontend/modals/deletednsfilter.html" %}
+        {% include "frontend/modals/confirmdeleterecord.html" %}
+        {% include "frontend/modals/confirmdeletednsforward.html" %}
+        {% endblock %}
+    </div>
+    {% block scripts %}
+    <script src="{% static 'frontend/js/dashboard.js' %}"></script>
+    <script src="{% static 'frontend/js/sidebar.js' %}"></script>
+    <script src="{% static 'frontend/js/dnsnode.js' %}"></script>
+    <script src="{% static 'frontend/js/chart-dnsdetail.js' %}"></script>
+    <script src="{% static 'frontend/js/blacklist.js' %}"></script>
+    <script src="{% static 'frontend/js/whitelist.js' %}"></script>
+    <script src="{% static 'frontend/js/dnsfilter.js' %}"></script>
+    <script src="{% static 'frontend/js/usermanagement.js' %}"></script>
+    <script src="{% static 'frontend/js/dnsrecord.js' %}"></script>
+    <script src="{% static 'frontend/js/dnsdetail.js' %}"></script>
+    <script src="{% static 'frontend/js/log.js' %}"></script>
+    <script>
+        $('[data-toggle="tooltip"]').tooltip()
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+
+    {% endblock %}
+</body>
+
+</html>

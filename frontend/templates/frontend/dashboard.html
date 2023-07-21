@@ -1,0 +1,173 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">Dashboard</a></li>
+        </ol>
+    </nav>
+    <div class="index-dashboard d-flex justify-content-between">
+        <div class="card card-index total-queries mr-2">
+            <div class="card-body">
+                <p class="card-title">Total queries</p>
+                <p class="card-text" id="totalQueriesIndex"></p>
+            </div>
+            <span class="total-queries-icon"></span>
+        </div>
+        <div class="card card-index queries-blocked mx-2">
+            <div class="card-body">
+                <p class="card-title">Queries Blocked</p>
+                <p class="card-text" id="queriesBlockedIndex"></p>
+            </div>
+            <span class="queries-blocked-icon"></span>
+        </div>
+        <div class="card card-index percent-blocked mx-2">
+            <div class="card-body">
+                <p class="card-title">Percent Blocked</p>
+                <p class="card-text" id="percentBlockedIndex"></p>
+            </div>
+            <span class="percent-blocked-icon"></span>
+        </div>
+        <div class="card card-index domain-blocklist ml-2">
+            <div class="card-body">
+                <p class="card-title">Domain in Blocklist</p>
+                <p class="card-text" id="percentDomainListIndex"></p>
+            </div>
+            <span class="domain-blocklist-icon"></span>
+        </div>
+    </div>
+    <div class="card chart-container mt-5">
+        <div class="card-header d-flex justify-content-between">
+            <span>Domain allowed and Domain blocked</span>
+            <div class="input-group input-group-sm filter-chart-dashboard d-flex align-items-center">
+                <!-- <input id="inputFilterDashboard" type="text" name="datetimedashboard" class="form-control"
+                    placeholder="Datetime" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                    autocomplete="off">
+                <div class="input-group-append">
+                    <button id="btnFilterDashboard" class="btn" type="button">Clear</button>
+                </div>
+                <select class="form-select filter-type-chart ml-3">
+                    <option selected value="1">Hours</option>
+                    <option value="2">Date</option>
+                  </select>
+                <span class="ml-3 clock-icon"></span> -->
+            </div>
+        </div>
+        <div class="card-body" style="height: 500px">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="top-domain-tables d-flex justify-content-between align-items-top mt-5">
+        <div class="card domain-table">
+            <div class="card-header">
+                Top Domain Allowed
+            </div>
+            <div class="card-body d-flex justify-content-start">
+                <table class="table table-bordered" style="height: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 45%;">Domain</th>
+                            <th scope="col" style="width: 20%;">Request</th>
+                            <th scope="col" style="width: 35%;">Frequency</th>
+                        </tr>
+                    </thead>
+                    {% load mathfilters %}
+                    <tbody id="domain-allow-table">
+                        {% for item in top_domain.top_domain.Top_Domain_Allowed %}
+                        <tr>
+                            <td class="domain-name" style="width: 45%; word-break: break-all;">
+                                <a href="getonedomain/{{item.domain}}" target="_blank" data-toggle="tooltip" 
+                                    data-placement="right" data-html="true"
+                                    data-original-title="<div class='tooltip-domain-div'>{% for item in hover_domain_allowed %}<span class='tooltip-domain'>{{ item.time }}&ensp;:&ensp;{{ item.count }}</span>{% endfor %}</div>"
+                                    >
+                                    {{item.domain}}
+                                </a>
+                            </td>
+                            <td class="domain-request" style="width: 20%;">{{item.count}}</td>
+                            <td class="col-progress" style="width: 35%; vertical-align: middle;">
+                                <div class="progress" style="width: 100%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: {{item.count|div:top_domain.top_domain.Sum_Allowed|mul:100}}%"
+                                        aria-valuenow="{{item.count|div:top_domain.top_domain.Sum_Allowed|mul:100}}" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card domain-table">
+            <div class="card-header">
+                Top Domain Blocked
+            </div>
+            <div class="card-body card-body d-flex justify-content-start">
+                <table class="table table-bordered" style="height: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 45%;">Domain</th>
+                            <th scope="col" style="width: 20%;">Request</th>
+                            <th scope="col" style="width: 35%;">Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="domain-block-table">
+                        {% for item in top_domain.top_domain.Top_Domain_Blocked %}
+                        <tr>
+                            <td class="domain-name" style="width: 45%; word-break: break-all;">
+                                <a href="getonedomain/{{item.domain}}" data-toggle="tooltip" 
+                                data-placement="right" data-html="true" target="_blank"
+                                data-original-title="<div class='tooltip-domain-div'>{% for item in hover_domain_blocked %}<span class='tooltip-domain'>{{ item.time }}&ensp;:&ensp;{{ item.count }}</span>{% endfor %}</div>"
+                                 >{{item.domain}}</a>
+                            </td>
+                            <td class="domain-request" style="width: 20%;">{{item.count}}</td>
+                            <td class="col-progress" style="width: 35%; vertical-align: middle;">
+                                <div class="progress" style="width: 100%;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: {{item.count|div:top_domain.top_domain.Sum_Blocked|mul:100}}%"
+                                        aria-valuenow="{{item.count|div:top_domain.top_domain.Sum_Blocked|mul:100}}" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="top-ip-table mt-5">
+        <div class="card">
+            <div class="card-header">
+                Top IP
+            </div>
+            <div class="card-body d-flex justify-content-start">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 40%;">IP client</th>
+                            <th scope="col" style="width: 20%;">Total send request</th>
+                            <th scope="col" style="width: 20%;">Total denied request</th>
+                            <th scope="col" style="width: 20%;">Total forwarded</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topIpTable">
+                        {% for item in data.results.top_ip %}
+                        <tr>
+                            <td><a target="_blank" href="/dnsnode/{{item.id_dns}}">{{item.ip_dns}}</a></td>
+                            <td>{{item.total_send_request}}</td>
+                            <td>{{item.block_send_request}}</td>
+                            <td>{{item.forwarded_send_request}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

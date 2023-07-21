@@ -1,0 +1,31 @@
+#list_dns_table {
+    margin-top: 55px;
+    margin-bottom: 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #f0f0f0 !important;
+    border: 1px solid #d3cbcb !important;
+    padding: 3px 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #d3cbcb !important;
+    border: 1px solid #d3cbcb !important;
+    padding: 3px 10px;
+    color: unset !important;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 3px 10px !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    width: 400px;
+    outline: none;
+}
+
+.dns-name:hover {
+    text-decoration: none;
+}

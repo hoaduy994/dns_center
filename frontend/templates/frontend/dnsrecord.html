@@ -1,0 +1,105 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+<div class="content">
+    <nav aria-label="breadcrumb" style="display: flex; justify-content: left;">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ request.path }}">DNS Record</a></li>
+        </ol>
+    </nav>
+    {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+    <div class="card mb-5">
+        <div class="card-header">
+            Add a new record
+        </div>
+        <form class="card-body form-add-dnsrecord" action="{% url 'dnsrecord' %}" method="post">
+            {% csrf_token %}
+            <div class=" d-flex justify-content-between flex-row">
+                <div class="input-add-whitelist mr-3">
+                    <span>Domain:</span>
+                    <input class="mt-2 mb-1 domain-dnsrecord" name="domain" type="text">
+                    <span class="domain-dnsrecord-err"></span>
+                </div>
+                <div class="input-add-whitelist ml-3">
+                    <span>IP Address:</span>
+                    <input class="mt-2 mb-1 ip-dnsrecord" name="ip_address" type="text">
+                    <span class="ip-dnsrecord-err"></span>
+                </div>
+            </div>
+            <div class="mt-4 mb-1 add-white-list-dns">
+                <table style="word-break: break-word; width: 100%;" class="table">
+                    <tbody>
+                        {% for item in dns_node_arr %}
+                        <td>
+                            <div class="form-check">
+                                <input name="id" class="form-check-input checkbox-dnsrecord" type="checkbox"
+                                value={{item.id}}>
+                            </div>
+                        </td>
+                        <td>{{ item.hostname }}</td>
+                        <td>{{ item.ip }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <span class="checkbox-dnsrecord-err"></span>
+            <div class="mt-4 text-right">
+                <input class="btn btn-main btn-submit-dnsrecord" type="submit" value="Add record">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    <div class="list-dns-table">
+        <div class="card">
+            <div class="card-header">
+                List of DNS
+            </div>
+            <div class="card-body">
+                <table style="word-break:break-word; width: 100%;" id="dnsrecord_table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">No</th>
+                            <th scope="col" style="width: 22.5%;">DNS Record</th>
+                            <th scope="col" style="width: 22.5%;">IP Address</th>
+                            <th scope="col" style="width: 22.5%;">DNS Node</th>
+                            <th scope="col" style="width: 22.5%;">IP Node</th>
+                            {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+                            <th scope="col" style="width: 5%;"></th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in dns_record_arr %}
+                        <tr>
+                            <td style="width: 5%;">{{forloop.counter}}</td>
+                            <td style="width: 22.5%;">{{item.domian}}</td>
+                            <td style="width: 22.5%;">{{item.ip}}</td>
+
+                            <td style="width: 22.5%;">
+                                {% for item in item.dns_node_name %}
+                                {{item}}<br>
+                                {% endfor %}
+                            </td>
+                            <td style="width: 22.5%;">
+                                {% for item in item.dns_node_ip %}
+                                {{item}}<br>
+                                {% endfor %}
+                            </td>
+                            {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+                            <td style="width: 5%;">
+                                <span data-id="{{item.id}}" data-idnode="{{item.add_dns}}"
+                                    data-node="{{item.dns_node_name}}" data-ipnode="{{item.dns_node_ip}}"
+                                    data-toggle="modal" data-target="#modelDeleteRecord" class="delete-icon del-record">
+                                </span>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

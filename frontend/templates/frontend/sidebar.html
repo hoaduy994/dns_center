@@ -1,0 +1,56 @@
+<div id="sidebar" class="sidebar sidebar-small collapse d-block d-flex flex-column justify-between">
+    <div class="list-group list-group-flush">
+        <a href="/" id="dashboard_item" data-id="/dashboard"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="home-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">Dashboard</span>
+        </a>
+        <a href="/dnsnode" id="dns_node_item" data-id="/dnsnode"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="monitor-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">DNS Node</span>
+        </a>
+        <a href="/whitelist?page=1" id="white_list_item" data-id="/whitelist"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="white-list-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">Whitelist</span>
+        </a>
+        <a href="/blacklist?page=1" id="black_list_item" data-id="/blacklist"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="black-list-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">Blacklist</span>
+        </a>
+        <a href="/dnsfilter" id="dns_filter_item" data-id="/dnsfilter"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="filter-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">DNS Filter</span>
+        </a>
+        <a href="/dnsrecord" id="dns_record_item" data-id="/dnsrecord"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="server-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">DNS Record</span>
+        </a>
+        <a href="/log" id="log_item" data-id="/log"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="log-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">Log</span>
+        </a>
+        <a href="/getipsiemtoweb" id="getipsiemtoweb_item" data-id="/getipsiemtoweb"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="plane-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">Send Log</span>
+        </a>
+        {% if user.is_authenticated and user.is_super or user.is_authenticated and user.is_admin %}
+        <a href="/usermanagement" id="user_mana_item" data-id="/usermanagement"
+            class="item-sidebar list-group-item d-flex align-items-center">
+            <i class="manager-icon fa-fw me-3"></i>
+            <span class="txt-item-sidebar">User Management</span>
+        </a>
+        {% endif %}
+    </div>
+    <a href="javascript:void(0)" data-id="/collapse"
+        class="item-sidebar list-group-item d-flex align-items-center collapse-sidebar">
+        <i class="fa-light icon-collapse-sidebar"></i>
+        <span class="txt-item-sidebar">Collapse sidebar</span>
+    </a>
+</div>

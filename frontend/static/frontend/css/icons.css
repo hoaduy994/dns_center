@@ -1,0 +1,334 @@
+.key-icon {
+  background-image: url('../icons/key.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin-left: 15px;
+}
+
+.logout-icon {
+  background-image: url('../icons/logout.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin-left: 15px;
+}
+
+.home-icon {
+  background-image: url('../icons/home.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .home-icon {
+  background-image: url('../icons/home-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.monitor-icon {
+  background-image: url('../icons/laptop.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px
+}
+
+.active .monitor-icon {
+  background-image: url('../icons/laptop-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.white-list-icon {
+  background-image: url('../icons/tick-circle.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px
+}
+
+.active .white-list-icon {
+  background-image: url('../icons/tick-circle-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px
+}
+
+.plane-icon {
+  background-image: url('../icons/plane.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px
+}
+
+.active .plane-icon {
+  background-image: url('../icons/plane-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px
+}
+
+.black-list-icon {
+  background-image: url('../icons/black-list.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .black-list-icon {
+  background-image: url('../icons/black-list-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.filter-icon {
+  background-image: url('../icons/filter.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .filter-icon {
+  background-image: url('../icons/filter-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.manager-icon {
+  background-image: url('../icons/manage.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .manager-icon {
+  background-image: url('../icons/manage-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.total-queries-icon {
+  background-image: url('../icons/plus-circle.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+}
+
+.queries-blocked-icon {
+  background-image: url('../icons/block.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+}
+
+.percent-blocked-icon {
+  background-image: url('../icons/pie.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+}
+
+.domain-blocklist-icon {
+  background-image: url('../icons/list.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+}
+
+.collapse-left-icon {
+  background-image: url('../icons/left-left.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.collapse-right-icon {
+  background-image: url('../icons/right-right.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.icon-collapse-sidebar {
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.green-dot-icon {
+  background-image: url('../icons/green-dot.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+
+.grey-dot-icon {
+  background-image: url('../icons/grey-dot.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+
+.delete-icon {
+  background-image: url('../icons/delete.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.add-account-icon {
+  background-image: url('../icons/add-account.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+}
+
+.config-icon {
+  background-image: url('../icons/config.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
+
+.user-icon {
+  background-image: url('../icons/user.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+}
+
+.clock-icon {
+  background-image: url('../icons/clock.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+}
+
+.server-icon {
+  background-image: url('../icons/server.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .server-icon {
+  background-image: url('../icons/server-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.search-icon {
+  background-image: url('../icons/search.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.log-icon {
+  background-image: url('../icons/log.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}
+
+.active .log-icon {
+  background-image: url('../icons/log-white.svg');
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  margin: 0 12px;
+}

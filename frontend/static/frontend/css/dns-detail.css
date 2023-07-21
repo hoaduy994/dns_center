@@ -1,0 +1,34 @@
+.dns-detail {
+  width: 100%;
+}
+
+.dns-detail tr {
+  height: 60px;
+}
+
+.dns-detail tr td {
+  width: 25%;
+}
+
+.dns-detail-name {
+  font-size: 26px;
+}
+
+.ip-dns-forward-err,
+.title-dns-forward-err {
+  display: none;
+  color: red;
+}
+
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+.top-table {
+  width: 100%;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: block;
+}
