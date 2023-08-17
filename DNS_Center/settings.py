@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-c%u&+fa)-wmc0k1yc05abyb0lv2+3&e2wb2u$n!f*zstxhqa=p
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ip_address = os.popen('ip addr show ens160 | grep "\<inet\>" | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
-ALLOWED_HOSTS = [ip_address]
+ip_address = os.popen('ip addr show ens33 | grep "\<inet\>" | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
+ALLOWED_HOSTS = [ip_address,'*']
 
 # Application definition
 

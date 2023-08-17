@@ -12,17 +12,18 @@ from django.http import HttpResponseRedirect
 def blacklist_split(request):
     form = FormSearchBlacklist()
     blacklist_ = []
-    # orm_get_all_blacklist = Black_List_Models.objects.all().order_by('add_dns').exclude(add_dns=", ")
+    orm_get_all_blacklist = Black_List_Models.objects.all().order_by('-id') 
     if request.method == 'GET':
         form = FormSearchBlacklist(request.GET)
         if form.is_valid():
             domain = form.cleaned_data['domain']
             orm_get_all_blacklist = Black_List_Models.objects.filter(
-                data_domain__icontains=domain).order_by('add_dns').exclude(add_dns=", ").exclude(add_dns="")
-        
+                data_domain__icontains=domain).order_by('-id')
     paginator = Paginator(orm_get_all_blacklist, 10)
+
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    blacklist_ = []
     for blacklist in paginator.page(page_number):
         add_host_name = []
         id_dns = []
@@ -66,7 +67,7 @@ def blacklist_split(request):
 
     #########################
     if request.method == 'POST':
-        # type = request.POST.get('type')
+        type = request.POST.get('type')
         title = request.POST.get('title')
         domain = request.POST.get('domain')
         add_dns = request.POST.getlist('id')

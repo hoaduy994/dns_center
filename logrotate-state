@@ -1,9 +1,8 @@
 logrotate state -- version 2
-"/root/dns_center/log/runserver_dns_center_error.log" 2022-7-5-9:32:35
-"/root/dns_center/log/runserver_dns_center_output.log" 2022-7-5-9:32:35
-"/root/dns_center/log/celery_dns_center_error.log" 2022-7-5-9:32:35
-"/root/dns_center/siem/log_to_siem.log" 2022-7-5-9:0:0
-"/root/dns_center/log/critical.log" 2022-7-5-11:0:0
-"/root/dns_center/log/django.log" 2022-7-5-11:0:0
-"/root/dns_center/log/celery_dns_center_output.log" 2022-7-5-9:32:35
-"/root/dns_center/log/info.log" 2022-7-5-11:0:0
+"/home/hoadd4/dns_center/log/info.log" 2023-8-17-20:21:54
+"/home/hoadd4/dns_center/log/celery_dns_center_output.log" 2023-8-17-20:21:54
+"/home/hoadd4/dns_center/log/django.log" 2023-8-17-20:21:54
+"/home/hoadd4/dns_center/log/runserver_dns_center_output.log" 2023-8-17-20:21:54
+"/home/hoadd4/dns_center/log/celery_dns_center_error.log" 2023-8-17-20:21:54
+"/home/hoadd4/dns_center/siem/*.log" 2023-8-17-20:0:0
+"/home/hoadd4/dns_center/log/runserver_dns_center_error.log" 2023-8-17-20:21:54

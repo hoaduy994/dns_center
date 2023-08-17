@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from main_part.models import (Dns_Node_Models, White_List_Models)
+from main_part.models import (Dns_Node_Models, 
+                              White_List_Models)
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -16,7 +17,8 @@ def whitelist_split(request):
         form = FormSearchWhitelist(request.GET)
         if form.is_valid():
             domain = form.cleaned_data['domain']
-            orm_query_whitelist = White_List_Models.objects.filter(data_domain__icontains=domain).order_by('-id')
+            orm_query_whitelist = White_List_Models.objects.filter(
+                data_domain__icontains=domain).order_by('-id')
     paginator = Paginator(orm_query_whitelist, 10)
     
     page_number = request.GET.get('page')
