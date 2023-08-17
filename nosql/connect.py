@@ -8,8 +8,11 @@ def connect():
                                     port="5555",
                                     database="DNS Center")
         
-    except (Exception, Error) as error:
-        print("Error while connecting to PostgreSQL", error)
-    return connection.cursor()
+        return connection
 
-connect()
+    except (Exception, Error) as error:
+        print("Error while connecting to PostgreSQL:", error)
+        return None
+
+# Gọi hàm connect()
+connection = connect()
